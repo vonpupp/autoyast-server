@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE profile>
+<profile xmlns="http://www.suse.com/1.0/yast2ns" xmlns:config="http://www.suse.com/1.0/configns">
+  <bootloader>
+    <device_map config:type="list">
+      <device_map_entry>
+        <firmware>hd0</firmware>
+        <linux>/dev/disk/by-id/ata-VBOX_HARDDISK_VB2a0a8915-fc19ba0f</linux>
+      </device_map_entry>
+    </device_map>
+    <global>
+      <append> resume=/dev/disk/by-id/ata-VBOX_HARDDISK_VB2a0a8915-fc19ba0f-part1 splash=silent quiet showopts</append>
+      <append_failsafe>showopts apm=off noresume edd=off powersaved=off nohz=off highres=off processor.max_cstate=1 nomodeset x11failsafe</append_failsafe>
+      <distributor>openSUSE</distributor>
+      <gfxmode>auto</gfxmode>
+      <gfxtheme>/boot/grub2/themes/openSUSE/theme.txt</gfxtheme>
+      <hiddenmenu>false</hiddenmenu>
+      <lines_cache_id>3</lines_cache_id>
+      <terminal>gfxterm</terminal>
+      <timeout config:type="integer">8</timeout>
+    </global>
+    <initrd_modules config:type="list">
+      <initrd_module>
+        <module>ata_piix</module>
+      </initrd_module>
+      <initrd_module>
+        <module>ata_generic</module>
+      </initrd_module>
+    </initrd_modules>
+    <loader_type>grub2</loader_type>
+    <sections config:type="list">
+      <section>
+        <lines_cache_id>0</lines_cache_id>
+        <menuentry>openSUSE</menuentry>
+        <root></root>
+      </section>
+      <section>
+        <lines_cache_id>1</lines_cache_id>
+        <menuentry>Advanced options for openSUSE&gt;openSUSE, with Linux 3.4.6-2.10-desktop</menuentry>
+        <root></root>
+      </section>
+      <section>
+        <lines_cache_id>2</lines_cache_id>
+        <menuentry>Advanced options for openSUSE&gt;openSUSE, with Linux 3.4.6-2.10-desktop (recovery mode)</menuentry>
+        <root></root>
+      </section>
+    </sections>
+  </bootloader>
+  <deploy_image>
+    <image_installation config:type="boolean">false</image_installation>
+  </deploy_image>
+</profile>
