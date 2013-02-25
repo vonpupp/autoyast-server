@@ -49,6 +49,359 @@
   <deploy_image>
     <image_installation config:type="boolean">false</image_installation>
   </deploy_image>
+  <dhcp-server>
+    <allowed_interfaces config:type="list"/>
+    <chroot>1</chroot>
+    <other_options></other_options>
+    <settings config:type="list">
+      <settings_entry>
+        <children config:type="list"/>
+        <directives config:type="list"/>
+        <id></id>
+        <options config:type="list"/>
+        <parent_id></parent_id>
+        <parent_type></parent_type>
+        <type></type>
+      </settings_entry>
+    </settings>
+    <start_service>0</start_service>
+    <use_ldap>0</use_ldap>
+  </dhcp-server>
+  <dns-server>
+    <allowed_interfaces config:type="list"/>
+    <chroot>1</chroot>
+    <logging config:type="list">
+      <listentry>
+        <key>category</key>
+        <value>queries { log_syslog; }</value>
+      </listentry>
+      <listentry>
+        <key>category</key>
+        <value>xfer-in { log_syslog; }</value>
+      </listentry>
+      <listentry>
+        <key>category</key>
+        <value>xfer-out { log_syslog; }</value>
+      </listentry>
+      <listentry>
+        <key>category</key>
+        <value>default { log_syslog; }</value>
+      </listentry>
+      <listentry>
+        <key>channel</key>
+        <value>log_syslog { syslog; }</value>
+      </listentry>
+    </logging>
+    <options config:type="list">
+      <option>
+        <key>directory</key>
+        <value>"/var/lib/named"</value>
+      </option>
+      <option>
+        <key>disable-empty-zone</key>
+        <value>"1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.IP6.ARPA"</value>
+      </option>
+      <option>
+        <key>dump-file</key>
+        <value>"/var/log/named_dump.db"</value>
+      </option>
+      <option>
+        <key>include</key>
+        <value>"/etc/named.d/forwarders.conf"</value>
+      </option>
+      <option>
+        <key>listen-on-v6</key>
+        <value>{ any; }</value>
+      </option>
+      <option>
+        <key>managed-keys-directory</key>
+        <value>"/var/lib/named/dyn/"</value>
+      </option>
+      <option>
+        <key>notify</key>
+        <value>no</value>
+      </option>
+      <option>
+        <key>statistics-file</key>
+        <value>"/var/log/named.stats"</value>
+      </option>
+      <option>
+        <key>forwarders</key>
+        <value>10.0.0.1; 208.67.222.222</value>
+      </option>
+    </options>
+    <start_service>1</start_service>
+    <use_ldap>0</use_ldap>
+    <zones config:type="list">
+      <listentry>
+        <file>root.hint</file>
+        <options config:type="list">
+          <option>
+            <key>type</key>
+            <value>hint</value>
+          </option>
+          <option>
+            <key>file</key>
+            <value>"root.hint"</value>
+          </option>
+        </options>
+        <type>hint</type>
+        <zone>.</zone>
+      </listentry>
+      <listentry>
+        <file>localhost.zone</file>
+        <options config:type="list">
+          <option>
+            <key>type</key>
+            <value>master</value>
+          </option>
+          <option>
+            <key>file</key>
+            <value>"localhost.zone"</value>
+          </option>
+        </options>
+        <records config:type="list">
+          <listentry>
+            <key>localhost.</key>
+            <type>NS</type>
+            <value>@</value>
+          </listentry>
+          <listentry>
+            <key>localhost.</key>
+            <type>A</type>
+            <value>127.0.0.1</value>
+          </listentry>
+          <listentry>
+            <key>localhost.</key>
+            <type>AAAA</type>
+            <value>::1</value>
+          </listentry>
+        </records>
+        <soa>
+          <expiry>6W</expiry>
+          <mail>root</mail>
+          <minimum>1W</minimum>
+          <refresh>2D</refresh>
+          <retry>4H</retry>
+          <serial>42</serial>
+          <server>@</server>
+          <zone>@</zone>
+        </soa>
+        <this_zone_had_NS_record_at_start>1</this_zone_had_NS_record_at_start>
+        <ttl>1W</ttl>
+        <type>master</type>
+        <zone>localhost</zone>
+      </listentry>
+      <listentry>
+        <file>127.0.0.zone</file>
+        <options config:type="list">
+          <option>
+            <key>type</key>
+            <value>master</value>
+          </option>
+          <option>
+            <key>file</key>
+            <value>"127.0.0.zone"</value>
+          </option>
+        </options>
+        <records config:type="list">
+          <listentry>
+            <key>0.0.127.in-addr.arpa.</key>
+            <type>NS</type>
+            <value>localhost.</value>
+          </listentry>
+          <listentry>
+            <key>1</key>
+            <type>PTR</type>
+            <value>localhost.</value>
+          </listentry>
+        </records>
+        <soa>
+          <expiry>6W</expiry>
+          <mail>root.localhost.</mail>
+          <minimum>1W</minimum>
+          <refresh>2D</refresh>
+          <retry>4H</retry>
+          <serial>42</serial>
+          <server>localhost.</server>
+          <zone>@</zone>
+        </soa>
+        <this_zone_had_NS_record_at_start>1</this_zone_had_NS_record_at_start>
+        <ttl>1W</ttl>
+        <type>master</type>
+        <zone>0.0.127.in-addr.arpa</zone>
+      </listentry>
+      <listentry>
+        <file>127.0.0.zone</file>
+        <options config:type="list">
+          <option>
+            <key>type</key>
+            <value>master</value>
+          </option>
+          <option>
+            <key>file</key>
+            <value>"127.0.0.zone"</value>
+          </option>
+        </options>
+        <records config:type="list">
+          <listentry>
+            <key>0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa.</key>
+            <type>NS</type>
+            <value>localhost.</value>
+          </listentry>
+          <listentry>
+            <key>1</key>
+            <type>PTR</type>
+            <value>localhost.</value>
+          </listentry>
+        </records>
+        <soa>
+          <expiry>6W</expiry>
+          <mail>root.localhost.</mail>
+          <minimum>1W</minimum>
+          <refresh>2D</refresh>
+          <retry>4H</retry>
+          <serial>42</serial>
+          <server>localhost.</server>
+          <zone>@</zone>
+        </soa>
+        <this_zone_had_NS_record_at_start>1</this_zone_had_NS_record_at_start>
+        <ttl>1W</ttl>
+        <type>master</type>
+        <zone>0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa</zone>
+      </listentry>
+      <listentry>
+        <file>dyn/br210008.congregacao.org.br</file>
+        <options config:type="list">
+          <option>
+            <key>allow-update</key>
+            <value>{ key dhcp_updates; }</value>
+          </option>
+          <option>
+            <key>allow-transfer</key>
+            <value>{ any; }</value>
+          </option>
+          <option>
+            <key>file</key>
+            <value>"dyn/br210008.congregacao.org.br"</value>
+          </option>
+          <option>
+            <key>type</key>
+            <value>master</value>
+          </option>
+        </options>
+        <records config:type="list">
+          <listentry>
+            <key>br210008.congregacao.org.br.</key>
+            <type>NS</type>
+            <value>ns1.br210008.congregacao.org.br.</value>
+          </listentry>
+          <listentry>
+            <key>br210008.congregacao.org.br.</key>
+            <type>ORIGIN</type>
+            <value>br210008.congregacao.org.br.</value>
+          </listentry>
+          <listentry>
+            <key>ns1.br210008.congregacao.org.br.</key>
+            <type>A</type>
+            <value>10.0.0.1</value>
+          </listentry>
+          <listentry>
+            <key>ns1.br210008.congregacao.org.br.</key>
+            <type>TTL</type>
+            <value>3600</value>
+          </listentry>
+          <listentry>
+            <key>ws001.br210008.congregacao.org.br.</key>
+            <type>A</type>
+            <value>10.0.0.30</value>
+          </listentry>
+          <listentry>
+            <key>ws001</key>
+            <type>TXT</type>
+            <value>316dd6cd81aba8adbc9a62d1d276b603a6</value>
+          </listentry>
+        </records>
+        <soa>
+          <expiry>604800</expiry>
+          <mail>root.srv01.br210008.congregacao.org.br.</mail>
+          <minimum>86400</minimum>
+          <refresh>10800</refresh>
+          <retry>3600</retry>
+          <serial>2013022501</serial>
+          <server>srv01.br210008.congregacao.org.br.</server>
+          <zone>br210008.congregacao.org.br</zone>
+        </soa>
+        <this_zone_had_NS_record_at_start>1</this_zone_had_NS_record_at_start>
+        <ttl>172800</ttl>
+        <type>master</type>
+        <zone>br210008.congregacao.org.br</zone>
+      </listentry>
+      <listentry>
+        <connected_with>br210008.congregacao.org.br</connected_with>
+        <file>dyn/0.0.10.in-addr.arpa</file>
+        <options config:type="list">
+          <option>
+            <key>allow-update</key>
+            <value>{ key dhcp_updates; }</value>
+          </option>
+          <option>
+            <key>allow-transfer</key>
+            <value>{ any; }</value>
+          </option>
+          <option>
+            <key>file</key>
+            <value>"dyn/0.0.10.in-addr.arpa"</value>
+          </option>
+          <option>
+            <key>type</key>
+            <value>master</value>
+          </option>
+        </options>
+        <records config:type="list">
+          <listentry>
+            <key>0.0.10.in-addr.arpa.</key>
+            <type>NS</type>
+            <value>ns1.br210008.congregacao.org.br.</value>
+          </listentry>
+          <listentry>
+            <key>0.0.10.in-addr.arpa.</key>
+            <type>ORIGIN</type>
+            <value>0.0.10.in-addr.arpa.</value>
+          </listentry>
+          <listentry>
+            <key>1.0.0.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>ns1.br210008.congregacao.org.br.</value>
+          </listentry>
+          <listentry>
+            <key>1.0.0.10.in-addr.arpa.</key>
+            <type>TTL</type>
+            <value>3600</value>
+          </listentry>
+          <listentry>
+            <key>30.0.0.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>ws001.br210008.congregacao.org.br.</value>
+          </listentry>
+        </records>
+        <soa>
+          <expiry>604800</expiry>
+          <mail>root.srv01.br210008.congregacao.org.br.</mail>
+          <minimum>86400</minimum>
+          <refresh>10800</refresh>
+          <retry>3600</retry>
+          <serial>2013022501</serial>
+          <server>srv01.br210008.congregacao.org.br.</server>
+          <zone>0.0.10.in-addr.arpa</zone>
+        </soa>
+        <this_zone_had_NS_record_at_start>1</this_zone_had_NS_record_at_start>
+        <ttl>172800</ttl>
+        <type>master</type>
+        <zone>0.0.10.in-addr.arpa</zone>
+      </listentry>
+    </zones>
+  </dns-server>
   <firewall>
     <enable_firewall config:type="boolean">false</enable_firewall>
   </firewall>
