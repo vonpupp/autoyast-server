@@ -484,6 +484,7 @@ DefaultPolicy default
   <runlevel>
     <default>5</default>
   </runlevel>
+  <security/>
   <software>
     <image/>
     <instsource></instsource>
