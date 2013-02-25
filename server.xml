@@ -50,21 +50,105 @@
     <image_installation config:type="boolean">false</image_installation>
   </deploy_image>
   <dhcp-server>
-    <allowed_interfaces config:type="list"/>
+    <allowed_interfaces config:type="list">
+      <allowed_interface>eth0</allowed_interface>
+    </allowed_interfaces>
     <chroot>1</chroot>
     <other_options></other_options>
     <settings config:type="list">
       <settings_entry>
         <children config:type="list"/>
-        <directives config:type="list"/>
-        <id></id>
+        <directives config:type="list">
+          <listentry>
+            <key>range</key>
+            <type>directive</type>
+            <value>10.0.0.30 10.0.3.240</value>
+          </listentry>
+          <listentry>
+            <key>default-lease-time</key>
+            <type>directive</type>
+            <value>14400</value>
+          </listentry>
+          <listentry>
+            <key>max-lease-time</key>
+            <type>directive</type>
+            <value>172800</value>
+          </listentry>
+          <listentry>
+            <key>zone</key>
+            <type>directive</type>
+            <value>br210008.congregacao.org.br. { primary 10.0.0.1; key dhcp_updates; }</value>
+          </listentry>
+          <listentry>
+            <key>zone</key>
+            <type>directive</type>
+            <value>0.0.10.in-addr.arpa. { primary 10.0.0.1; key dhcp_updates; }</value>
+          </listentry>
+        </directives>
+        <id>10.0.0.0 netmask 255.255.252.0</id>
         <options config:type="list"/>
+        <parent_id></parent_id>
+        <parent_type></parent_type>
+        <type>subnet</type>
+      </settings_entry>
+      <settings_entry>
+        <children config:type="list">
+          <child>
+            <id>10.0.0.0 netmask 255.255.252.0</id>
+            <type>subnet</type>
+          </child>
+        </children>
+        <directives config:type="list">
+          <listentry>
+            <key>default-lease-time</key>
+            <type>directive</type>
+            <value>14400</value>
+          </listentry>
+          <listentry>
+            <key>include</key>
+            <type>directive</type>
+            <value>"/etc/named.d/dns.key"</value>
+          </listentry>
+          <listentry>
+            <key>ddns-update-style</key>
+            <type>directive</type>
+            <value>interim</value>
+          </listentry>
+          <listentry>
+            <key>ignore</key>
+            <type>directive</type>
+            <value>client-updates</value>
+          </listentry>
+          <listentry>
+            <key>ddns-updates</key>
+            <type>directive</type>
+            <value>on</value>
+          </listentry>
+        </directives>
+        <id></id>
+        <options config:type="list">
+          <option>
+            <key>domain-name</key>
+            <type>option</type>
+            <value>"br210008.congregacao.org.br"</value>
+          </option>
+          <option>
+            <key>domain-name-servers</key>
+            <type>option</type>
+            <value>10.0.0.1, 208.67.220.220</value>
+          </option>
+          <option>
+            <key>routers</key>
+            <type>option</type>
+            <value>10.0.3.250</value>
+          </option>
+        </options>
         <parent_id></parent_id>
         <parent_type></parent_type>
         <type></type>
       </settings_entry>
     </settings>
-    <start_service>0</start_service>
+    <start_service>1</start_service>
     <use_ldap>0</use_ldap>
   </dhcp-server>
   <dns-server>
