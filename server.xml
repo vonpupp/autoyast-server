@@ -49,4 +49,7 @@
   <deploy_image>
     <image_installation config:type="boolean">false</image_installation>
   </deploy_image>
+  <runlevel>
+    <default>5</default>
+  </runlevel>
 </profile>
