@@ -49,6 +49,9 @@
   <deploy_image>
     <image_installation config:type="boolean">false</image_installation>
   </deploy_image>
+  <firewall>
+    <enable_firewall config:type="boolean">false</enable_firewall>
+  </firewall>
   <keyboard>
     <keymap>english-us</keymap>
   </keyboard>
