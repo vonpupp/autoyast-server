@@ -52,4 +52,8 @@
   <runlevel>
     <default>5</default>
   </runlevel>
+  <timezone>
+    <hwclock>UTC</hwclock>
+    <timezone>America/Sao_Paulo</timezone>
+  </timezone>
 </profile>
