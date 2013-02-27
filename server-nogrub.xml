@@ -1,0 +1,1381 @@
+<?xml version="1.0"?>
+<!DOCTYPE profile>
+<profile xmlns="http://www.suse.com/1.0/yast2ns" xmlns:config="http://www.suse.com/1.0/configns">
+  <deploy_image>
+    <image_installation config:type="boolean">false</image_installation>
+  </deploy_image>
+  <dhcp-server>
+    <allowed_interfaces config:type="list">
+      <allowed_interface>eth0</allowed_interface>
+    </allowed_interfaces>
+    <chroot>1</chroot>
+    <other_options></other_options>
+    <settings config:type="list">
+      <settings_entry>
+        <children config:type="list"/>
+        <directives config:type="list">
+          <listentry>
+            <key>range</key>
+            <type>directive</type>
+            <value>10.0.0.30 10.0.3.240</value>
+          </listentry>
+          <listentry>
+            <key>default-lease-time</key>
+            <type>directive</type>
+            <value>14400</value>
+          </listentry>
+          <listentry>
+            <key>max-lease-time</key>
+            <type>directive</type>
+            <value>172800</value>
+          </listentry>
+          <listentry>
+            <key>zone</key>
+            <type>directive</type>
+            <value>br210008.congregacao.org.br. { primary 10.0.0.1; key dhcp_updates; }</value>
+          </listentry>
+          <listentry>
+            <key>zone</key>
+            <type>directive</type>
+            <value>0.0.10.in-addr.arpa. { primary 10.0.0.1; key dhcp_updates; }</value>
+          </listentry>
+        </directives>
+        <id>10.0.0.0 netmask 255.255.252.0</id>
+        <options config:type="list"/>
+        <parent_id></parent_id>
+        <parent_type></parent_type>
+        <type>subnet</type>
+      </settings_entry>
+      <settings_entry>
+        <children config:type="list">
+          <child>
+            <id>10.0.0.0 netmask 255.255.252.0</id>
+            <type>subnet</type>
+          </child>
+        </children>
+        <directives config:type="list">
+          <listentry>
+            <key>default-lease-time</key>
+            <type>directive</type>
+            <value>14400</value>
+          </listentry>
+          <listentry>
+            <key>include</key>
+            <type>directive</type>
+            <value>"/etc/named.d/dns.key"</value>
+          </listentry>
+          <listentry>
+            <key>ddns-update-style</key>
+            <type>directive</type>
+            <value>interim</value>
+          </listentry>
+          <listentry>
+            <key>ignore</key>
+            <type>directive</type>
+            <value>client-updates</value>
+          </listentry>
+          <listentry>
+            <key>ddns-updates</key>
+            <type>directive</type>
+            <value>on</value>
+          </listentry>
+        </directives>
+        <id></id>
+        <options config:type="list">
+          <option>
+            <key>domain-name</key>
+            <type>option</type>
+            <value>"br210008.congregacao.org.br"</value>
+          </option>
+          <option>
+            <key>domain-name-servers</key>
+            <type>option</type>
+            <value>10.0.0.1, 208.67.220.220</value>
+          </option>
+          <option>
+            <key>routers</key>
+            <type>option</type>
+            <value>10.0.3.250</value>
+          </option>
+        </options>
+        <parent_id></parent_id>
+        <parent_type></parent_type>
+        <type></type>
+      </settings_entry>
+    </settings>
+    <start_service>1</start_service>
+    <use_ldap>0</use_ldap>
+  </dhcp-server>
+  <dns-server>
+    <allowed_interfaces config:type="list"/>
+    <chroot>1</chroot>
+    <logging config:type="list">
+      <listentry>
+        <key>category</key>
+        <value>queries { log_syslog; }</value>
+      </listentry>
+      <listentry>
+        <key>category</key>
+        <value>xfer-in { log_syslog; }</value>
+      </listentry>
+      <listentry>
+        <key>category</key>
+        <value>xfer-out { log_syslog; }</value>
+      </listentry>
+      <listentry>
+        <key>category</key>
+        <value>default { log_syslog; }</value>
+      </listentry>
+      <listentry>
+        <key>channel</key>
+        <value>log_syslog { syslog; }</value>
+      </listentry>
+    </logging>
+    <options config:type="list">
+      <option>
+        <key>directory</key>
+        <value>"/var/lib/named"</value>
+      </option>
+      <option>
+        <key>disable-empty-zone</key>
+        <value>"1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.IP6.ARPA"</value>
+      </option>
+      <option>
+        <key>dump-file</key>
+        <value>"/var/log/named_dump.db"</value>
+      </option>
+      <option>
+        <key>include</key>
+        <value>"/etc/named.d/forwarders.conf"</value>
+      </option>
+      <option>
+        <key>listen-on-v6</key>
+        <value>{ any; }</value>
+      </option>
+      <option>
+        <key>managed-keys-directory</key>
+        <value>"/var/lib/named/dyn/"</value>
+      </option>
+      <option>
+        <key>notify</key>
+        <value>no</value>
+      </option>
+      <option>
+        <key>statistics-file</key>
+        <value>"/var/log/named.stats"</value>
+      </option>
+      <option>
+        <key>forwarders</key>
+        <value>10.0.0.1; 208.67.222.222</value>
+      </option>
+    </options>
+    <start_service>1</start_service>
+    <use_ldap>0</use_ldap>
+    <zones config:type="list">
+      <listentry>
+        <file>root.hint</file>
+        <options config:type="list">
+          <option>
+            <key>type</key>
+            <value>hint</value>
+          </option>
+          <option>
+            <key>file</key>
+            <value>"root.hint"</value>
+          </option>
+        </options>
+        <type>hint</type>
+        <zone>.</zone>
+      </listentry>
+      <listentry>
+        <file>localhost.zone</file>
+        <options config:type="list">
+          <option>
+            <key>type</key>
+            <value>master</value>
+          </option>
+          <option>
+            <key>file</key>
+            <value>"localhost.zone"</value>
+          </option>
+        </options>
+        <records config:type="list">
+          <listentry>
+            <key>localhost.</key>
+            <type>NS</type>
+            <value>@</value>
+          </listentry>
+          <listentry>
+            <key>localhost.</key>
+            <type>A</type>
+            <value>127.0.0.1</value>
+          </listentry>
+          <listentry>
+            <key>localhost.</key>
+            <type>AAAA</type>
+            <value>::1</value>
+          </listentry>
+        </records>
+        <soa>
+          <expiry>6W</expiry>
+          <mail>root</mail>
+          <minimum>1W</minimum>
+          <refresh>2D</refresh>
+          <retry>4H</retry>
+          <serial>42</serial>
+          <server>@</server>
+          <zone>@</zone>
+        </soa>
+        <this_zone_had_NS_record_at_start>1</this_zone_had_NS_record_at_start>
+        <ttl>1W</ttl>
+        <type>master</type>
+        <zone>localhost</zone>
+      </listentry>
+      <listentry>
+        <file>127.0.0.zone</file>
+        <options config:type="list">
+          <option>
+            <key>type</key>
+            <value>master</value>
+          </option>
+          <option>
+            <key>file</key>
+            <value>"127.0.0.zone"</value>
+          </option>
+        </options>
+        <records config:type="list">
+          <listentry>
+            <key>0.0.127.in-addr.arpa.</key>
+            <type>NS</type>
+            <value>localhost.</value>
+          </listentry>
+          <listentry>
+            <key>1</key>
+            <type>PTR</type>
+            <value>localhost.</value>
+          </listentry>
+        </records>
+        <soa>
+          <expiry>6W</expiry>
+          <mail>root.localhost.</mail>
+          <minimum>1W</minimum>
+          <refresh>2D</refresh>
+          <retry>4H</retry>
+          <serial>42</serial>
+          <server>localhost.</server>
+          <zone>@</zone>
+        </soa>
+        <this_zone_had_NS_record_at_start>1</this_zone_had_NS_record_at_start>
+        <ttl>1W</ttl>
+        <type>master</type>
+        <zone>0.0.127.in-addr.arpa</zone>
+      </listentry>
+      <listentry>
+        <file>127.0.0.zone</file>
+        <options config:type="list">
+          <option>
+            <key>type</key>
+            <value>master</value>
+          </option>
+          <option>
+            <key>file</key>
+            <value>"127.0.0.zone"</value>
+          </option>
+        </options>
+        <records config:type="list">
+          <listentry>
+            <key>0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa.</key>
+            <type>NS</type>
+            <value>localhost.</value>
+          </listentry>
+          <listentry>
+            <key>1</key>
+            <type>PTR</type>
+            <value>localhost.</value>
+          </listentry>
+        </records>
+        <soa>
+          <expiry>6W</expiry>
+          <mail>root.localhost.</mail>
+          <minimum>1W</minimum>
+          <refresh>2D</refresh>
+          <retry>4H</retry>
+          <serial>42</serial>
+          <server>localhost.</server>
+          <zone>@</zone>
+        </soa>
+        <this_zone_had_NS_record_at_start>1</this_zone_had_NS_record_at_start>
+        <ttl>1W</ttl>
+        <type>master</type>
+        <zone>0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa</zone>
+      </listentry>
+      <listentry>
+        <file>dyn/br210008.congregacao.org.br</file>
+        <options config:type="list">
+          <option>
+            <key>allow-update</key>
+            <value>{ key dhcp_updates; }</value>
+          </option>
+          <option>
+            <key>allow-transfer</key>
+            <value>{ any; }</value>
+          </option>
+          <option>
+            <key>file</key>
+            <value>"dyn/br210008.congregacao.org.br"</value>
+          </option>
+          <option>
+            <key>type</key>
+            <value>master</value>
+          </option>
+        </options>
+        <records config:type="list">
+          <listentry>
+            <key>br210008.congregacao.org.br.</key>
+            <type>NS</type>
+            <value>ns1.br210008.congregacao.org.br.</value>
+          </listentry>
+          <listentry>
+            <key>br210008.congregacao.org.br.</key>
+            <type>ORIGIN</type>
+            <value>br210008.congregacao.org.br.</value>
+          </listentry>
+          <listentry>
+            <key>ns1.br210008.congregacao.org.br.</key>
+            <type>A</type>
+            <value>10.0.0.1</value>
+          </listentry>
+          <listentry>
+            <key>ns1.br210008.congregacao.org.br.</key>
+            <type>TTL</type>
+            <value>3600</value>
+          </listentry>
+          <listentry>
+            <key>ws001.br210008.congregacao.org.br.</key>
+            <type>A</type>
+            <value>10.0.0.30</value>
+          </listentry>
+          <listentry>
+            <key>ws001</key>
+            <type>TXT</type>
+            <value>316dd6cd81aba8adbc9a62d1d276b603a6</value>
+          </listentry>
+        </records>
+        <soa>
+          <expiry>604800</expiry>
+          <mail>root.srv01.br210008.congregacao.org.br.</mail>
+          <minimum>86400</minimum>
+          <refresh>10800</refresh>
+          <retry>3600</retry>
+          <serial>2013022501</serial>
+          <server>srv01.br210008.congregacao.org.br.</server>
+          <zone>br210008.congregacao.org.br</zone>
+        </soa>
+        <this_zone_had_NS_record_at_start>1</this_zone_had_NS_record_at_start>
+        <ttl>172800</ttl>
+        <type>master</type>
+        <zone>br210008.congregacao.org.br</zone>
+      </listentry>
+      <listentry>
+        <connected_with>br210008.congregacao.org.br</connected_with>
+        <file>dyn/0.0.10.in-addr.arpa</file>
+        <options config:type="list">
+          <option>
+            <key>allow-update</key>
+            <value>{ key dhcp_updates; }</value>
+          </option>
+          <option>
+            <key>allow-transfer</key>
+            <value>{ any; }</value>
+          </option>
+          <option>
+            <key>file</key>
+            <value>"dyn/0.0.10.in-addr.arpa"</value>
+          </option>
+          <option>
+            <key>type</key>
+            <value>master</value>
+          </option>
+        </options>
+        <records config:type="list">
+          <listentry>
+            <key>0.0.10.in-addr.arpa.</key>
+            <type>NS</type>
+            <value>ns1.br210008.congregacao.org.br.</value>
+          </listentry>
+          <listentry>
+            <key>0.0.10.in-addr.arpa.</key>
+            <type>ORIGIN</type>
+            <value>0.0.10.in-addr.arpa.</value>
+          </listentry>
+          <listentry>
+            <key>1.0.0.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>ns1.br210008.congregacao.org.br.</value>
+          </listentry>
+          <listentry>
+            <key>1.0.0.10.in-addr.arpa.</key>
+            <type>TTL</type>
+            <value>3600</value>
+          </listentry>
+          <listentry>
+            <key>30.0.0.10.in-addr.arpa.</key>
+            <type>PTR</type>
+            <value>ws001.br210008.congregacao.org.br.</value>
+          </listentry>
+        </records>
+        <soa>
+          <expiry>604800</expiry>
+          <mail>root.srv01.br210008.congregacao.org.br.</mail>
+          <minimum>86400</minimum>
+          <refresh>10800</refresh>
+          <retry>3600</retry>
+          <serial>2013022501</serial>
+          <server>srv01.br210008.congregacao.org.br.</server>
+          <zone>0.0.10.in-addr.arpa</zone>
+        </soa>
+        <this_zone_had_NS_record_at_start>1</this_zone_had_NS_record_at_start>
+        <ttl>172800</ttl>
+        <type>master</type>
+        <zone>0.0.10.in-addr.arpa</zone>
+      </listentry>
+    </zones>
+  </dns-server>
+  <firewall>
+    <FW_DEV_DMZ></FW_DEV_DMZ>
+    <FW_DEV_EXT></FW_DEV_EXT>
+    <FW_DEV_INT></FW_DEV_INT>
+    <enable_firewall config:type="boolean">false</enable_firewall>
+    <start_firewall config:type="boolean">false</start_firewall>
+  </firewall>
+  <groups config:type="list"/>
+  <host>
+    <hosts config:type="list">
+      <hosts_entry>
+        <host_address>10.0.0.1</host_address>
+        <names config:type="list">
+          <name>srv01.br210008.congregacao.org.br srv01</name>
+          <name>srv01.br210008.congregacao.org.br srv01</name>
+        </names>
+      </hosts_entry>
+      <hosts_entry>
+        <host_address>127.0.0.1</host_address>
+        <names config:type="list">
+          <name>localhost</name>
+        </names>
+      </hosts_entry>
+    </hosts>
+  </host>
+  <keyboard>
+    <keymap>english-us</keymap>
+  </keyboard>
+  <language>
+    <language>en_US</language>
+    <languages></languages>
+  </language>
+  <login_settings/>
+  <networking>
+    <dhcp_options>
+      <dhclient_client_id></dhclient_client_id>
+      <dhclient_hostname_option></dhclient_hostname_option>
+    </dhcp_options>
+    <dns>
+      <dhcp_hostname config:type="boolean">false</dhcp_hostname>
+      <domain>br210008.congregacao.org.br</domain>
+      <hostname>srv01</hostname>
+      <nameservers config:type="list">
+        <nameserver>10.0.0.1</nameserver>
+        <nameserver>208.67.220.220</nameserver>
+      </nameservers>
+      <resolv_conf_policy>auto</resolv_conf_policy>
+      <searchlist config:type="list">
+        <search>br210008.congregacao.org.br</search>
+      </searchlist>
+      <write_hostname config:type="boolean">false</write_hostname>
+    </dns>
+    <interfaces config:type="list">
+      <interface>
+        <bootproto>static</bootproto>
+        <device>eth0</device>
+        <ipaddr>10.0.0.1</ipaddr>
+        <name>82540EM Gigabit Ethernet Controller</name>
+        <netmask>255.255.252.0</netmask>
+        <startmode>auto</startmode>
+        <usercontrol>no</usercontrol>
+      </interface>
+      <interface>
+        <broadcast>127.255.255.255</broadcast>
+        <device>lo</device>
+        <firewall>no</firewall>
+        <ipaddr>127.0.0.1</ipaddr>
+        <netmask>255.0.0.0</netmask>
+        <network>127.0.0.0</network>
+        <prefixlen>8</prefixlen>
+        <startmode>auto</startmode>
+        <usercontrol>no</usercontrol>
+      </interface>
+    </interfaces>
+    <ipv6 config:type="boolean">true</ipv6>
+    <keep_install_network config:type="boolean">false</keep_install_network>
+    <managed config:type="boolean">false</managed>
+    <net-udev config:type="list">
+      <rule>
+        <name>eth0</name>
+        <rule>ATTR{address}</rule>
+        <value>08:00:27:df:96:a0</value>
+      </rule>
+    </net-udev>
+    <routing>
+      <ip_forward config:type="boolean">false</ip_forward>
+      <routes config:type="list">
+        <route>
+          <destination>default</destination>
+          <device>-</device>
+          <gateway>10.0.3.250</gateway>
+          <netmask>-</netmask>
+        </route>
+      </routes>
+    </routing>
+  </networking>
+  <partitioning config:type="list">
+    <drive>
+      <!-- <device>/dev/sda</device> -->
+      <initialize config:type="boolean">true</initialize>
+      <partitions config:type="list">
+        <partition>
+          <create config:type="boolean">true</create>
+          <crypt_fs config:type="boolean">false</crypt_fs>
+          <filesystem config:type="symbol">swap</filesystem>
+          <format config:type="boolean">true</format>
+          <fstopt>defaults</fstopt>
+          <loop_fs config:type="boolean">false</loop_fs>
+          <mount>swap</mount>
+          <mountby config:type="symbol">id</mountby>
+          <partition_id config:type="integer">130</partition_id>
+          <partition_nr config:type="integer">1</partition_nr>
+          <resize config:type="boolean">false</resize>
+          <size>2gb</size>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <crypt_fs config:type="boolean">false</crypt_fs>
+          <filesystem config:type="symbol">ext4</filesystem>
+          <format config:type="boolean">true</format>
+          <fstopt>acl,user_xattr</fstopt>
+          <loop_fs config:type="boolean">false</loop_fs>
+          <mount>/</mount>
+          <mountby config:type="symbol">id</mountby>
+          <partition_id config:type="integer">131</partition_id>
+          <partition_nr config:type="integer">2</partition_nr>
+          <resize config:type="boolean">false</resize>
+          <size>10gb</size>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <crypt_fs config:type="boolean">false</crypt_fs>
+          <filesystem config:type="symbol">ext4</filesystem>
+          <format config:type="boolean">true</format>
+          <fstopt>defaults</fstopt>
+          <loop_fs config:type="boolean">false</loop_fs>
+          <mount>/home</mount>
+          <mountby config:type="symbol">id</mountby>
+          <partition_id config:type="integer">131</partition_id>
+          <partition_nr config:type="integer">3</partition_nr>
+          <resize config:type="boolean">false</resize>
+          <size>auto</size>
+        </partition>
+      </partitions>
+      <pesize></pesize>
+      <type config:type="symbol">CT_DISK</type>
+      <use>all</use>
+    </drive>
+<!--    <drive>
+      <device>/dev/tmpfs</device>
+      <initialize config:type="boolean">true</initialize>
+      <partitions config:type="list">
+        <partition>
+          <create config:type="boolean">true</create>
+          <crypt_fs config:type="boolean">false</crypt_fs>
+          <filesystem config:type="symbol">tmpfs</filesystem>
+          <format config:type="boolean">true</format>
+          <loop_fs config:type="boolean">false</loop_fs>
+          <mount>/dev/shm</mount>
+          <mountby config:type="symbol">device</mountby>
+          <partition_id config:type="integer">131</partition_id>
+          <resize config:type="boolean">false</resize>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <crypt_fs config:type="boolean">false</crypt_fs>
+          <filesystem config:type="symbol">tmpfs</filesystem>
+          <format config:type="boolean">true</format>
+          <loop_fs config:type="boolean">false</loop_fs>
+          <mount>/run</mount>
+          <mountby config:type="symbol">device</mountby>
+          <partition_id config:type="integer">131</partition_id>
+          <resize config:type="boolean">false</resize>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <crypt_fs config:type="boolean">false</crypt_fs>
+          <filesystem config:type="symbol">tmpfs</filesystem>
+          <format config:type="boolean">true</format>
+          <loop_fs config:type="boolean">false</loop_fs>
+          <mount>/sys/fs/cgroup</mount>
+          <mountby config:type="symbol">device</mountby>
+          <partition_id config:type="integer">131</partition_id>
+          <resize config:type="boolean">false</resize>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <crypt_fs config:type="boolean">false</crypt_fs>
+          <filesystem config:type="symbol">tmpfs</filesystem>
+          <format config:type="boolean">true</format>
+          <loop_fs config:type="boolean">false</loop_fs>
+          <mount>/var/lock</mount>
+          <mountby config:type="symbol">device</mountby>
+          <partition_id config:type="integer">131</partition_id>
+          <resize config:type="boolean">false</resize>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <crypt_fs config:type="boolean">false</crypt_fs>
+          <filesystem config:type="symbol">tmpfs</filesystem>
+          <format config:type="boolean">true</format>
+          <loop_fs config:type="boolean">false</loop_fs>
+          <mount>/media</mount>
+          <mountby config:type="symbol">device</mountby>
+          <partition_id config:type="integer">131</partition_id>
+          <resize config:type="boolean">false</resize>
+        </partition>
+        <partition>
+          <create config:type="boolean">true</create>
+          <crypt_fs config:type="boolean">false</crypt_fs>
+          <filesystem config:type="symbol">tmpfs</filesystem>
+          <format config:type="boolean">true</format>
+          <loop_fs config:type="boolean">false</loop_fs>
+          <mount>/var/run</mount>
+          <mountby config:type="symbol">device</mountby>
+          <partition_id config:type="integer">131</partition_id>
+          <resize config:type="boolean">false</resize>
+        </partition>
+      </partitions>
+      <pesize></pesize>
+      <type config:type="symbol">CT_DISK</type>
+      <use>all</use>
+    </drive> -->
+  </partitioning>
+  <printer>
+    <client_conf_content>
+      <file_contents><![CDATA[#   Sample client configuration file for the Common UNIX Printing System
+#   (CUPS).
+#
+#   Copyright 1997-2005 by Easy Software Products, all rights reserved.
+#   Klaus Singvogel <kssingvo@suse.de> modified it for SUSE distribution.
+#
+#   These coded instructions, statements, and computer programs are the
+#   property of Easy Software Products and are protected by Federal
+#   copyright law.  Distribution and use rights are outlined in the file
+#   "LICENSE.txt" which should have been included with this file.  If this
+#   file is missing or damaged please contact Easy Software Products
+#   at:
+#
+#       Attn: CUPS Licensing Information
+#       Easy Software Products
+#       44141 Airport View Drive, Suite 204
+#       Hollywood, Maryland 20636 USA
+#
+#       Voice: (301) 373-9600
+#       EMail: cups-info@cups.org
+#         WWW: http://www.cups.org
+#
+
+########################################################################
+#                                                                      #
+# This is the CUPS client configuration file.  This file is used to    #
+# define client-specific parameters, such as the default server or     #
+# default encryption settings.                                         #
+#                                                                      #
+# Put this file on /etc/cups/client.conf (system use) or               #
+# ~/.cups/client.conf (personal use).                                  #
+#                                                                      #
+# more information in the manual page client.conf(5)
+########################################################################
+
+#
+# Encryption: directive specifies the default encryption settings for
+# the client.
+#
+# Possible values:
+#
+#     IfRequested
+#     Never
+#     Required
+#     Always
+#
+# The default value is "IfRequested".
+# This parameter can also be set # using the CUPS_ENCRYPTION environment
+# variable.
+#
+
+#Encryption IfRequested
+#Encryption Never
+#Encryption Required
+#Encryption Always
+
+#
+# ServerName: directive specifies sets the remote server that is to be
+# used for all client operations. That is, it redirects all client
+# requests to the remote server.
+#
+# By default CUPS will use the domain socket /var/run/cups/cups.sock or
+# local server ("localhost"), if so configured. The value can be
+# overwritten by the CUPS_SERVER environment variable.
+#
+# The default port number is 631 but can be overridden by adding a colon
+# followed by the desired port number to the value.
+#
+# ONLY ONE SERVER NAME MAY BE SPECIFIED AT A TIME.  To use more than one
+# server you must use a local scheduler with browsing and possibly
+# polling.
+#
+
+#ServerName /domain/socket
+#ServerName foo.bar.com
+#ServerName 11.22.33.444
+#ServerName foo.bar.com:8631
+]]></file_contents>
+    </client_conf_content>
+    <cupsd_conf_content>
+      <file_contents><![CDATA[#
+# "$Id: cupsd.conf.in 9407 2010-12-09 21:24:51Z mike $"
+#
+# Sample configuration file for the CUPS scheduler.  See "man cupsd.conf" for a
+# complete description of this file.
+#
+
+# Log general information in error_log - change "warn" to "debug"
+# for troubleshooting...
+LogLevel warn
+
+# Administrator user group...
+SystemGroup sys root
+
+
+# Only listen for connections from the local machine.
+Listen localhost:631
+Listen /var/run/cups/cups.sock
+
+# Show shared printers on the local network.
+Browsing On
+BrowseOrder allow,deny
+BrowseAllow all
+BrowseLocalProtocols CUPS
+
+# Default authentication type, when authentication is required...
+DefaultAuthType Basic
+
+# Web interface setting...
+WebInterface Yes
+
+# Restrict access to the server...
+<Location />
+  Order allow,deny
+  Allow 127.0.0.2
+</Location>
+
+# Restrict access to the admin pages...
+<Location /admin>
+  Order allow,deny
+</Location>
+
+# Restrict access to configuration files...
+<Location /admin/conf>
+  AuthType Default
+  Require user @SYSTEM
+  Order allow,deny
+</Location>
+
+# Set the default printer/job policies...
+<Policy default>
+  # Job/subscription privacy...
+  JobPrivateAccess default
+  JobPrivateValues default
+  SubscriptionPrivateAccess default
+  SubscriptionPrivateValues default
+
+  # Job-related operations must be done by the owner or an administrator...
+  <Limit Create-Job Print-Job Print-URI Validate-Job>
+    Order deny,allow
+  </Limit>
+
+  <Limit Send-Document Send-URI Hold-Job Release-Job Restart-Job Purge-Jobs Set-Job-Attributes Create-Job-Subscription Renew-Subscription Cancel-Subscription Get-Notifications Reprocess-Job Cancel-Current-Job Suspend-Current-Job Resume-Job Cancel-My-Jobs Close-Job CUPS-Move-Job CUPS-Get-Document>
+    Require user @OWNER @SYSTEM
+    Order deny,allow
+  </Limit>
+
+  # All administration operations require an administrator to authenticate...
+  <Limit CUPS-Add-Modify-Printer CUPS-Delete-Printer CUPS-Add-Modify-Class CUPS-Delete-Class CUPS-Set-Default CUPS-Get-Devices>
+    AuthType Default
+    Require user @SYSTEM
+    Order deny,allow
+  </Limit>
+
+  # All printer operations require a printer operator to authenticate...
+  <Limit Pause-Printer Resume-Printer Enable-Printer Disable-Printer Pause-Printer-After-Current-Job Hold-New-Jobs Release-Held-New-Jobs Deactivate-Printer Activate-Printer Restart-Printer Shutdown-Printer Startup-Printer Promote-Job Schedule-Job-After Cancel-Jobs CUPS-Accept-Jobs CUPS-Reject-Jobs>
+    AuthType Default
+    Require user @SYSTEM
+    Order deny,allow
+  </Limit>
+
+  # Only the owner or an administrator can cancel or authenticate a job...
+  <Limit Cancel-Job CUPS-Authenticate-Job>
+    Require user @OWNER @SYSTEM
+    Order deny,allow
+  </Limit>
+
+  <Limit All>
+    Order deny,allow
+  </Limit>
+</Policy>
+
+# Set the authenticated printer/job policies...
+<Policy authenticated>
+  # Job/subscription privacy...
+  JobPrivateAccess default
+  JobPrivateValues default
+  SubscriptionPrivateAccess default
+  SubscriptionPrivateValues default
+
+  # Job-related operations must be done by the owner or an administrator...
+  <Limit Create-Job Print-Job Print-URI Validate-Job>
+    AuthType Default
+    Order deny,allow
+  </Limit>
+
+  <Limit Send-Document Send-URI Hold-Job Release-Job Restart-Job Purge-Jobs Set-Job-Attributes Create-Job-Subscription Renew-Subscription Cancel-Subscription Get-Notifications Reprocess-Job Cancel-Current-Job Suspend-Current-Job Resume-Job Cancel-My-Jobs Close-Job CUPS-Move-Job CUPS-Get-Document>
+    AuthType Default
+    Require user @OWNER @SYSTEM
+    Order deny,allow
+  </Limit>
+
+  # All administration operations require an administrator to authenticate...
+  <Limit CUPS-Add-Modify-Printer CUPS-Delete-Printer CUPS-Add-Modify-Class CUPS-Delete-Class CUPS-Set-Default>
+    AuthType Default
+    Require user @SYSTEM
+    Order deny,allow
+  </Limit>
+
+  # All printer operations require a printer operator to authenticate...
+  <Limit Pause-Printer Resume-Printer Enable-Printer Disable-Printer Pause-Printer-After-Current-Job Hold-New-Jobs Release-Held-New-Jobs Deactivate-Printer Activate-Printer Restart-Printer Shutdown-Printer Startup-Printer Promote-Job Schedule-Job-After Cancel-Jobs CUPS-Accept-Jobs CUPS-Reject-Jobs>
+    AuthType Default
+    Require user @SYSTEM
+    Order deny,allow
+  </Limit>
+
+  # Only the owner or an administrator can cancel or authenticate a job...
+  <Limit Cancel-Job CUPS-Authenticate-Job>
+    AuthType Default
+    Require user @OWNER @SYSTEM
+    Order deny,allow
+  </Limit>
+
+  <Limit All>
+    Order deny,allow
+  </Limit>
+</Policy>
+
+#
+# End of "$Id: cupsd.conf.in 9407 2010-12-09 21:24:51Z mike $".
+#
+
+# The policy below is added by SUSE during build of our cups package.
+# The policy 'allowallforanybody' is totally open and insecure and therefore
+# it can only be used within an internal network where only trused users exist
+# and where the cupsd is not accessible at all from any external host, see
+# http://en.opensuse.org/SDB:CUPS_and_SANE_Firewall_settings
+# Have in mind that any user who is allowed to do printer admin tasks
+# can change the print queues as he likes - e.g. send copies of confidental
+# print jobs from an internal network to any external destination, see
+# http://en.opensuse.org/SDB:CUPS_in_a_Nutshell
+# For documentation regarding 'Managing Operation Policies' see
+# http://www.cups.org/documentation.php/doc-1.5/policies.html
+<Policy allowallforanybody>
+  <Limit All>
+    Order deny,allow
+    Allow from all
+  </Limit>
+</Policy>
+# Explicitly set the CUPS 'default' policy to be used by default:
+DefaultPolicy default
+# End of additions by SUSE.
+
+]]></file_contents>
+    </cupsd_conf_content>
+  </printer>
+  <runlevel>
+    <default>5</default>
+  </runlevel>
+  <security/>
+  <software>
+    <image/>
+    <instsource></instsource>
+    <packages config:type="list">
+      <package>ConsoleKit-32bit</package>
+      <package>DirectFB-Mesa</package>
+      <package>PackageKit-browser-plugin</package>
+      <package>PackageKit-gtk3-module</package>
+      <package>apache2-mod_dnssd</package>
+      <package>at-spi2-atk-common</package>
+      <package>at-spi2-atk-gtk2</package>
+      <package>at-spi2-atk-gtk3</package>
+      <package>autoyast2</package>
+      <package>bootsplash-branding-openSUSE</package>
+      <package>brasero-nautilus</package>
+      <package>brltty-driver-at-spi2</package>
+      <package>brltty-driver-brlapi</package>
+      <package>brltty-driver-espeak</package>
+      <package>brltty-driver-speech-dispatcher</package>
+      <package>brltty-driver-xwindow</package>
+      <package>caribou-gtk-module-common</package>
+      <package>caribou-gtk2-module</package>
+      <package>caribou-gtk3-module</package>
+      <package>crda</package>
+      <package>cyrus-sasl-32bit</package>
+      <package>desktop-translations</package>
+      <package>evolution-mono-plugins</package>
+      <package>evolution-python-plugins</package>
+      <package>gconf-polkit</package>
+      <package>gdk-pixbuf-loader-libopenraw</package>
+      <package>git-gui</package>
+      <package>git-web</package>
+      <package>glamor</package>
+      <package>gnome-bluetooth-plugins-geoclue</package>
+      <package>gnome-keyring-pam-32bit</package>
+      <package>gnome-panel-applet-tracker</package>
+      <package>grilo-plugin-tracker</package>
+      <package>grilo-plugin-upnp</package>
+      <package>grilo-plugin-youtube</package>
+      <package>groff-devx</package>
+      <package>gsettings-backend-dconf</package>
+      <package>gstreamer-0_10-plugin-gnomevfs</package>
+      <package>gstreamer-0_10-plugin-gstclutter</package>
+      <package>gxditview</package>
+      <package>inkscape-extensions-extra</package>
+      <package>inkscape-extensions-gimp</package>
+      <package>kexec-tools</package>
+      <package>krb5-32bit</package>
+      <package>libXvMC1</package>
+      <package>libaudit1-32bit</package>
+      <package>libcanberra-gtk-module-common</package>
+      <package>libcanberra-gtk2-module</package>
+      <package>libcanberra-gtk3-module</package>
+      <package>libcap2-32bit</package>
+      <package>libcom_err2-32bit</package>
+      <package>libcrack2-32bit</package>
+      <package>libdbus-1-3-32bit</package>
+      <package>libfolks-libsocialweb25</package>
+      <package>libgssglue1-32bit</package>
+      <package>libgupnp-av-1_0-2</package>
+      <package>libiniparser0-32bit</package>
+      <package>libkeyutils1-32bit</package>
+      <package>libldap-2_4-2-32bit</package>
+      <package>liblzma5-32bit</package>
+      <package>libmono-2_0-1</package>
+      <package>libnscd-32bit</package>
+      <package>libopenssl1_0_0-32bit</package>
+      <package>libpeas-loader-gjs</package>
+      <package>libproxy1-config-gnome3</package>
+      <package>libproxy1-networkmanager</package>
+      <package>libproxy1-pacrunner-webkit</package>
+      <package>libpurple-branding-openSUSE</package>
+      <package>libpurple-tcl</package>
+      <package>libreoffice-filters-optional</package>
+      <package>libreoffice-help-en-US</package>
+      <package>libreoffice-hyphen</package>
+      <package>libreoffice-mailmerge</package>
+      <package>libreoffice-templates-en</package>
+      <package>libreoffice-templates-labels-a4</package>
+      <package>libreoffice-templates-labels-letter</package>
+      <package>libreoffice-templates-presentation-layouts</package>
+      <package>libreoffice-thesaurus-en-US</package>
+      <package>libselinux1-32bit</package>
+      <package>libsocialweb-client2</package>
+      <package>libtalloc2-32bit</package>
+      <package>libtdb1-32bit</package>
+      <package>libtirpc1-32bit</package>
+      <package>libva1</package>
+      <package>libwbclient0-32bit</package>
+      <package>libxslt-tools</package>
+      <package>myspell-american</package>
+      <package>nautilus-evince</package>
+      <package>nautilus-extension-tracker-tags</package>
+      <package>nautilus-file-roller</package>
+      <package>nautilus-sendto-plugin-empathy</package>
+      <package>nautilus-sendto-plugin-evolution</package>
+      <package>nautilus-sendto-plugin-upnp</package>
+      <package>nautilus-totem</package>
+      <package>opensuse-manuals_en</package>
+      <package>pam-32bit</package>
+      <package>pam-modules-32bit</package>
+      <package>parallel-printer-support</package>
+      <package>python-gobject-cairo</package>
+      <package>samba-32bit</package>
+      <package>samba-client-32bit</package>
+      <package>samba-winbind-32bit</package>
+      <package>sane-backends-autoconfig</package>
+      <package>sax2-tools</package>
+      <package>site-config</package>
+      <package>smolt-gui</package>
+      <package>speech-dispatcher-module-espeak</package>
+      <package>splashy-branding-openSUSE</package>
+      <package>systemd-32bit</package>
+      <package>telepathy-mission-control-plugin-goa</package>
+      <package>totem-browser-plugin-gmp</package>
+      <package>tracker-miner-firefox</package>
+      <package>vaapi-dummy-driver</package>
+      <package>vaapi-intel-driver</package>
+      <package>virtualbox-guest-kmp-desktop</package>
+      <package>virtualbox-guest-tools</package>
+      <package>virtualbox-guest-x11</package>
+      <package>wireless-regdb</package>
+      <package>xbrlapi</package>
+      <package>xchat-perl</package>
+      <package>xchat-python</package>
+      <package>xchat-tcl</package>
+      <package>xf86-video-ark</package>
+      <package>xf86-video-intel</package>
+      <package>xf86-video-mga</package>
+      <package>xf86-video-neomagic</package>
+      <package>xf86-video-savage</package>
+      <package>xf86-video-sis</package>
+      <package>xorg-x11-driver-video-intel-legacy</package>
+      <package>xorg-x11-driver-video-nouveau</package>
+      <package>xorg-x11-driver-video-radeonhd</package>
+      <package>yast2-schema</package>
+      <package>yast2-trans-en_US</package>
+      <package>yast2-x11</package>
+      <package>zypper-aptitude</package>
+    </packages>
+    <patterns config:type="list">
+      <pattern>base</pattern>
+      <pattern>console</pattern>
+      <pattern>devel_basis</pattern>
+      <pattern>devel_kernel</pattern>
+      <pattern>dhcp_dns_server</pattern>
+      <pattern>enhanced_base</pattern>
+      <pattern>file_server</pattern>
+      <pattern>fonts</pattern>
+      <pattern>games</pattern>
+      <pattern>gnome</pattern>
+      <pattern>gnome_basis</pattern>
+      <pattern>imaging</pattern>
+      <pattern>multimedia</pattern>
+      <pattern>network_admin</pattern>
+      <pattern>non_oss</pattern>
+      <pattern>office</pattern>
+      <pattern>remote_desktop</pattern>
+      <pattern>sw_management</pattern>
+      <pattern>x11</pattern>
+      <pattern>yast2_basis</pattern>
+    </patterns>
+    <remove-packages config:type="list">
+      <package>Mesa-libGLESv2-2</package>
+      <package>NetworkManager-kde4-libs</package>
+      <package>NetworkManager-openvpn-kde4</package>
+      <package>NetworkManager-pptp-kde4</package>
+      <package>NetworkManager-vpnc-kde4</package>
+      <package>akonadi-runtime</package>
+      <package>apache2-mod_perl</package>
+      <package>art-sharp2</package>
+      <package>boost-license1_49_0</package>
+      <package>bundle-lang-common-cs</package>
+      <package>bundle-lang-common-da</package>
+      <package>bundle-lang-common-de</package>
+      <package>bundle-lang-common-es</package>
+      <package>bundle-lang-common-fr</package>
+      <package>bundle-lang-common-hu</package>
+      <package>bundle-lang-common-it</package>
+      <package>bundle-lang-common-ja</package>
+      <package>bundle-lang-common-pl</package>
+      <package>bundle-lang-common-pt</package>
+      <package>bundle-lang-common-ru</package>
+      <package>bundle-lang-common-sv</package>
+      <package>bundle-lang-common-zh</package>
+      <package>bundle-lang-gnome-cs</package>
+      <package>bundle-lang-gnome-da</package>
+      <package>bundle-lang-gnome-de</package>
+      <package>bundle-lang-gnome-es</package>
+      <package>bundle-lang-gnome-fr</package>
+      <package>bundle-lang-gnome-hu</package>
+      <package>bundle-lang-gnome-it</package>
+      <package>bundle-lang-gnome-ja</package>
+      <package>bundle-lang-gnome-pl</package>
+      <package>bundle-lang-gnome-pt</package>
+      <package>bundle-lang-gnome-ru</package>
+      <package>bundle-lang-gnome-sv</package>
+      <package>bundle-lang-gnome-zh</package>
+      <package>bundle-lang-kde-cs</package>
+      <package>bundle-lang-kde-da</package>
+      <package>bundle-lang-kde-de</package>
+      <package>bundle-lang-kde-en</package>
+      <package>bundle-lang-kde-es</package>
+      <package>bundle-lang-kde-fr</package>
+      <package>bundle-lang-kde-hu</package>
+      <package>bundle-lang-kde-it</package>
+      <package>bundle-lang-kde-ja</package>
+      <package>bundle-lang-kde-pl</package>
+      <package>bundle-lang-kde-pt</package>
+      <package>bundle-lang-kde-ru</package>
+      <package>bundle-lang-kde-sv</package>
+      <package>bundle-lang-kde-zh</package>
+      <package>check-create-certificate</package>
+      <package>cln</package>
+      <package>dcraw</package>
+      <package>dcraw-lang</package>
+      <package>emacs-x11</package>
+      <package>enscript</package>
+      <package>exim</package>
+      <package>f-spot</package>
+      <package>f-spot-lang</package>
+      <package>flickrnet</package>
+      <package>gcc-gij</package>
+      <package>gcc47-gij</package>
+      <package>gnome-desktop-sharp2</package>
+      <package>gnome-do</package>
+      <package>gnome-do-lang</package>
+      <package>gnome-do-plugins</package>
+      <package>gnome-do-plugins-lang</package>
+      <package>gnome-keyring-sharp</package>
+      <package>gnome-sharp2</package>
+      <package>gnome-vfs-sharp2</package>
+      <package>gnuchess</package>
+      <package>graphviz</package>
+      <package>graphviz-gd</package>
+      <package>graphviz-gnome</package>
+      <package>htdig</package>
+      <package>icewm-default</package>
+      <package>igerman98-doc</package>
+      <package>ispell</package>
+      <package>ispell-american</package>
+      <package>ispell-brazilian</package>
+      <package>ispell-british</package>
+      <package>ispell-czech</package>
+      <package>ispell-danish</package>
+      <package>ispell-french</package>
+      <package>ispell-german</package>
+      <package>ispell-hungarian</package>
+      <package>ispell-italian</package>
+      <package>ispell-ngerman</package>
+      <package>ispell-polish</package>
+      <package>ispell-portuguese</package>
+      <package>ispell-russian</package>
+      <package>ispell-spanish</package>
+      <package>ispell-swedish</package>
+      <package>java-1_5_0-gcj-compat</package>
+      <package>kactivities4</package>
+      <package>kde4-filesystem</package>
+      <package>kde4-kgreeter-plugins</package>
+      <package>kdebase4-openSUSE</package>
+      <package>kdebase4-runtime</package>
+      <package>kdebase4-runtime-branding-openSUSE</package>
+      <package>kdebase4-workspace</package>
+      <package>kdebase4-workspace-branding-openSUSE</package>
+      <package>kdebase4-workspace-ksysguardd</package>
+      <package>kdebase4-workspace-liboxygenstyle</package>
+      <package>kdelibs4</package>
+      <package>kdelibs4-branding-openSUSE</package>
+      <package>kdelibs4-core</package>
+      <package>kdepim4-runtime</package>
+      <package>kdepimlibs4</package>
+      <package>kdialog</package>
+      <package>kernel-default</package>
+      <package>kernel-pae</package>
+      <package>kernel-xen</package>
+      <package>kio_sysinfo</package>
+      <package>kio_sysinfo-branding-openSUSE</package>
+      <package>ksplashx-branding-openSUSE</package>
+      <package>kwin</package>
+      <package>libHUpnp1</package>
+      <package>libQtSolutions_SOAP-2_7-1</package>
+      <package>libakonadi4</package>
+      <package>libakonadiprotocolinternals1</package>
+      <package>libattica0_3</package>
+      <package>libboost_program_options1_49_0</package>
+      <package>libbz2-1-32bit</package>
+      <package>libclucene2</package>
+      <package>libdbusmenu-qt2</package>
+      <package>libdmtx0</package>
+      <package>libev4</package>
+      <package>libevtlog0</package>
+      <package>libgdbm3-32bit</package>
+      <package>libgps20</package>
+      <package>libibus-1_0-0</package>
+      <package>libiodbc3</package>
+      <package>libkactivities6</package>
+      <package>libkde4</package>
+      <package>libkdecore4</package>
+      <package>libkdeedu4-data</package>
+      <package>libkdepimlibs4</package>
+      <package>libkeduvocdocument4</package>
+      <package>libkexiv2-10</package>
+      <package>libkonq5</package>
+      <package>libksuseinstall1</package>
+      <package>libm17n0</package>
+      <package>libmarblewidget13</package>
+      <package>libnet1</package>
+      <package>libotf0</package>
+      <package>libpolkit-qt-1-1</package>
+      <package>libpq5</package>
+      <package>libprison0</package>
+      <package>libqalculate5</package>
+      <package>libqca2</package>
+      <package>libqdialogsolver1</package>
+      <package>libqimageblitz4</package>
+      <package>libqrencode3</package>
+      <package>libqt4-qt3support</package>
+      <package>libqt4-sql-postgresql</package>
+      <package>libqt4-sql-sqlite</package>
+      <package>libqt4-sql-unixODBC</package>
+      <package>librasqal3</package>
+      <package>libredland0</package>
+      <package>libreoffice-icon-theme-crystal</package>
+      <package>libreoffice-icon-theme-oxygen</package>
+      <package>libsoprano4</package>
+      <package>libssh4</package>
+      <package>libstrigi0</package>
+      <package>libwnck-1-22</package>
+      <package>libyaml-0-2</package>
+      <package>m17n-db</package>
+      <package>marble</package>
+      <package>marble-data</package>
+      <package>mysql-community-server</package>
+      <package>mysql-community-server-client</package>
+      <package>mysql-community-server-errormessages</package>
+      <package>ndesk-dbus</package>
+      <package>ndesk-dbus-glib</package>
+      <package>nginx-1.0</package>
+      <package>oxygen-icon-theme</package>
+      <package>patterns-openSUSE-x11_yast</package>
+      <package>perl-32bit</package>
+      <package>perl-Tie-IxHash</package>
+      <package>perl-base-32bit</package>
+      <package>plasma-addons</package>
+      <package>plasma-addons-akonadi</package>
+      <package>plasma-addons-lancelot</package>
+      <package>plasma-addons-marble</package>
+      <package>plasmoid-folderview</package>
+      <package>plasmoid-networkmanagement</package>
+      <package>plasmoid-quickaccess</package>
+      <package>polkit-kde-agent-1</package>
+      <package>polkit-kde-kcmmodules-1</package>
+      <package>ptools</package>
+      <package>python-kde4</package>
+      <package>python-kdebase4</package>
+      <package>ruby</package>
+      <package>ruby19</package>
+      <package>rubygem-actionmailer-3_2</package>
+      <package>rubygem-actionpack-3_2</package>
+      <package>rubygem-activemodel-3_2</package>
+      <package>rubygem-activerecord-3_2</package>
+      <package>rubygem-activeresource-3_2</package>
+      <package>rubygem-activesupport-3_2</package>
+      <package>rubygem-arel-3_0</package>
+      <package>rubygem-bcrypt-ruby</package>
+      <package>rubygem-builder-3_0</package>
+      <package>rubygem-bundler</package>
+      <package>rubygem-cancan</package>
+      <package>rubygem-daemon_controller</package>
+      <package>rubygem-delayed_job-3_0</package>
+      <package>rubygem-delayed_job_active_record</package>
+      <package>rubygem-devise</package>
+      <package>rubygem-devise-i18n</package>
+      <package>rubygem-devise_unix2_chkpwd_authenticatable</package>
+      <package>rubygem-erubis-2_7</package>
+      <package>rubygem-fast_gettext</package>
+      <package>rubygem-fastthread</package>
+      <package>rubygem-gettext_i18n_rails</package>
+      <package>rubygem-haml</package>
+      <package>rubygem-hike</package>
+      <package>rubygem-i18n-0_6</package>
+      <package>rubygem-inifile</package>
+      <package>rubygem-journey-1_0</package>
+      <package>rubygem-json</package>
+      <package>rubygem-mail-2_4</package>
+      <package>rubygem-mime-types</package>
+      <package>rubygem-multi_json</package>
+      <package>rubygem-nokogiri</package>
+      <package>rubygem-orm_adapter</package>
+      <package>rubygem-passenger</package>
+      <package>rubygem-passenger-nginx</package>
+      <package>rubygem-polkit1</package>
+      <package>rubygem-polyglot</package>
+      <package>rubygem-rack-1_1</package>
+      <package>rubygem-rack-1_4</package>
+      <package>rubygem-rack-cache-1_2</package>
+      <package>rubygem-rack-ssl</package>
+      <package>rubygem-rack-test-0_6</package>
+      <package>rubygem-rails-3_2</package>
+      <package>rubygem-rails-i18n</package>
+      <package>rubygem-railties-3_2</package>
+      <package>rubygem-rdoc</package>
+      <package>rubygem-ruby-dbus</package>
+      <package>rubygem-sprockets-2_1</package>
+      <package>rubygem-sqlite3</package>
+      <package>rubygem-thor</package>
+      <package>rubygem-tilt-1_1</package>
+      <package>rubygem-treetop</package>
+      <package>rubygem-tzinfo</package>
+      <package>rubygem-warden</package>
+      <package>rubygem-webyast-rake-tasks</package>
+      <package>sendmail</package>
+      <package>shared-desktop-ontologies</package>
+      <package>soprano</package>
+      <package>soprano-backend-redland</package>
+      <package>soprano-backend-virtuoso</package>
+      <package>sqlite3</package>
+      <package>strigi</package>
+      <package>susegreeter-branding-openSUSE</package>
+      <package>susehelp_cz</package>
+      <package>susehelp_de</package>
+      <package>susehelp_es</package>
+      <package>susehelp_fr</package>
+      <package>susehelp_hu</package>
+      <package>susehelp_it</package>
+      <package>syslog-ng</package>
+      <package>sysvinit-init</package>
+      <package>typelib-1_0-JSCore-3_0</package>
+      <package>typelib-1_0-WebKit-3_0</package>
+      <package>udisks</package>
+      <package>unixODBC</package>
+      <package>virtuoso-drivers</package>
+      <package>virtuoso-server</package>
+      <package>webyast-base</package>
+      <package>webyast-base-branding-default</package>
+      <package>wnck-sharp</package>
+      <package>words</package>
+      <package>xaw3d</package>
+      <package>yast2-control-center-qt</package>
+      <package>yast2-dbus-server</package>
+      <package>yast2-qt</package>
+      <package>yast2-qt-branding-openSUSE</package>
+      <package>yast2-qt-pkg</package>
+      <package>yast2-theme-openSUSE-Oxygen</package>
+    </remove-packages>
+  </software>
+  <timezone>
+    <hwclock>UTC</hwclock>
+    <timezone>America/Sao_Paulo</timezone>
+  </timezone>
+  <user_defaults>
+    <expire></expire>
+    <group>100</group>
+    <groups>video</groups>
+    <home>/home</home>
+    <inactive>-1</inactive>
+    <shell>/bin/bash</shell>
+    <skel>/etc/skel</skel>
+    <umask>022</umask>
+  </user_defaults>
+  <users config:type="list"/>
+</profile>
