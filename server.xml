@@ -30,19 +30,37 @@
     <loader_type>grub2</loader_type>
     <sections config:type="list">
       <section>
+        <append>splash=silent quiet showopts</append>
+        <image>/boot/vmlinuz</image>
+        <initrd>/boot/initrd</initrd>
         <lines_cache_id>0</lines_cache_id>
         <menuentry>openSUSE</menuentry>
+        <name></name>
+        <original_name>linux</original_name>
         <root></root>
+        <type>image</type>
       </section>
       <section>
+        <append>splash=silent quiet showopts</append>
+        <image>/boot/vmlinuz</image>
+        <initrd>/boot/initrd</initrd>
         <lines_cache_id>1</lines_cache_id>
         <menuentry>Advanced options for openSUSE&gt;openSUSE, with Linux 3.4.6-2.10-desktop</menuentry>
+        <name></name>
+        <original_name>linux</original_name>
         <root></root>
+        <type>image</type>
       </section>
       <section>
+        <append>splash=silent quiet showopts</append>
+        <image>/boot/vmlinuz</image>
+        <initrd>/boot/initrd</initrd>
         <lines_cache_id>2</lines_cache_id>
         <menuentry>Advanced options for openSUSE&gt;openSUSE, with Linux 3.4.6-2.10-desktop (recovery mode)</menuentry>
+        <name></name>
+        <original_name>linux</original_name>
         <root></root>
+        <type>image</type>
       </section>
     </sections>
   </bootloader>
@@ -57,7 +75,6 @@
     <other_options></other_options>
     <settings config:type="list">
       <settings_entry>
-        <children config:type="list"/>
         <directives config:type="list">
           <listentry>
             <key>range</key>
@@ -86,9 +103,6 @@
           </listentry>
         </directives>
         <id>10.0.0.0 netmask 255.255.252.0</id>
-        <options config:type="list"/>
-        <parent_id></parent_id>
-        <parent_type></parent_type>
         <type>subnet</type>
       </settings_entry>
       <settings_entry>
@@ -125,7 +139,6 @@
             <value>on</value>
           </listentry>
         </directives>
-        <id></id>
         <options config:type="list">
           <option>
             <key>domain-name</key>
@@ -143,9 +156,6 @@
             <value>10.0.3.250</value>
           </option>
         </options>
-        <parent_id></parent_id>
-        <parent_type></parent_type>
-        <type></type>
       </settings_entry>
     </settings>
     <start_service>1</start_service>
@@ -487,9 +497,6 @@
     </zones>
   </dns-server>
   <firewall>
-    <FW_DEV_DMZ></FW_DEV_DMZ>
-    <FW_DEV_EXT></FW_DEV_EXT>
-    <FW_DEV_INT></FW_DEV_INT>
     <enable_firewall config:type="boolean">false</enable_firewall>
     <start_firewall config:type="boolean">false</start_firewall>
   </firewall>
@@ -516,14 +523,10 @@
   </keyboard>
   <language>
     <language>en_US</language>
-    <languages></languages>
+    <languages>en_US</languages>
   </language>
   <login_settings/>
   <networking>
-    <dhcp_options>
-      <dhclient_client_id></dhclient_client_id>
-      <dhclient_hostname_option></dhclient_hostname_option>
-    </dhcp_options>
     <dns>
       <dhcp_hostname config:type="boolean">false</dhcp_hostname>
       <domain>br210008.congregacao.org.br</domain>
@@ -545,6 +548,7 @@
         <ipaddr>10.0.0.1</ipaddr>
         <name>82540EM Gigabit Ethernet Controller</name>
         <netmask>255.255.252.0</netmask>
+        <prefixlen>22</prefixlen>
         <startmode>auto</startmode>
         <usercontrol>no</usercontrol>
       </interface>
@@ -563,13 +567,6 @@
     <ipv6 config:type="boolean">true</ipv6>
     <keep_install_network config:type="boolean">false</keep_install_network>
     <managed config:type="boolean">false</managed>
-    <net-udev config:type="list">
-      <rule>
-        <name>eth0</name>
-        <rule>ATTR{address}</rule>
-        <value>08:00:27:df:96:a0</value>
-      </rule>
-    </net-udev>
     <routing>
       <ip_forward config:type="boolean">false</ip_forward>
       <routes config:type="list">
@@ -591,6 +588,7 @@
           <create config:type="boolean">true</create>
           <crypt_fs config:type="boolean">false</crypt_fs>
           <filesystem config:type="symbol">swap</filesystem>
+          <filesystem_id config:type="integer">130</filesystem_id>
           <format config:type="boolean">true</format>
           <fstopt>defaults</fstopt>
           <loop_fs config:type="boolean">false</loop_fs>
@@ -605,6 +603,7 @@
           <create config:type="boolean">true</create>
           <crypt_fs config:type="boolean">false</crypt_fs>
           <filesystem config:type="symbol">ext4</filesystem>
+          <filesystem_id config:type="integer">131</filesystem_id>
           <format config:type="boolean">true</format>
           <fstopt>acl,user_xattr</fstopt>
           <loop_fs config:type="boolean">false</loop_fs>
@@ -619,6 +618,7 @@
           <create config:type="boolean">true</create>
           <crypt_fs config:type="boolean">false</crypt_fs>
           <filesystem config:type="symbol">ext4</filesystem>
+          <filesystem_id config:type="integer">131</filesystem_id>
           <format config:type="boolean">true</format>
           <fstopt>defaults</fstopt>
           <loop_fs config:type="boolean">false</loop_fs>
@@ -630,7 +630,6 @@
           <size>12880870912</size>
         </partition>
       </partitions>
-      <pesize></pesize>
       <type config:type="symbol">CT_DISK</type>
       <use>all</use>
     </drive>
@@ -642,6 +641,7 @@
           <create config:type="boolean">true</create>
           <crypt_fs config:type="boolean">false</crypt_fs>
           <filesystem config:type="symbol">tmpfs</filesystem>
+          <filesystem_id config:type="integer">131</filesystem_id>
           <format config:type="boolean">true</format>
           <loop_fs config:type="boolean">false</loop_fs>
           <mount>/dev/shm</mount>
@@ -653,6 +653,7 @@
           <create config:type="boolean">true</create>
           <crypt_fs config:type="boolean">false</crypt_fs>
           <filesystem config:type="symbol">tmpfs</filesystem>
+          <filesystem_id config:type="integer">131</filesystem_id>
           <format config:type="boolean">true</format>
           <loop_fs config:type="boolean">false</loop_fs>
           <mount>/run</mount>
@@ -664,6 +665,7 @@
           <create config:type="boolean">true</create>
           <crypt_fs config:type="boolean">false</crypt_fs>
           <filesystem config:type="symbol">tmpfs</filesystem>
+          <filesystem_id config:type="integer">131</filesystem_id>
           <format config:type="boolean">true</format>
           <loop_fs config:type="boolean">false</loop_fs>
           <mount>/sys/fs/cgroup</mount>
@@ -675,6 +677,7 @@
           <create config:type="boolean">true</create>
           <crypt_fs config:type="boolean">false</crypt_fs>
           <filesystem config:type="symbol">tmpfs</filesystem>
+          <filesystem_id config:type="integer">131</filesystem_id>
           <format config:type="boolean">true</format>
           <loop_fs config:type="boolean">false</loop_fs>
           <mount>/var/lock</mount>
@@ -686,6 +689,7 @@
           <create config:type="boolean">true</create>
           <crypt_fs config:type="boolean">false</crypt_fs>
           <filesystem config:type="symbol">tmpfs</filesystem>
+          <filesystem_id config:type="integer">131</filesystem_id>
           <format config:type="boolean">true</format>
           <loop_fs config:type="boolean">false</loop_fs>
           <mount>/media</mount>
@@ -697,6 +701,7 @@
           <create config:type="boolean">true</create>
           <crypt_fs config:type="boolean">false</crypt_fs>
           <filesystem config:type="symbol">tmpfs</filesystem>
+          <filesystem_id config:type="integer">131</filesystem_id>
           <format config:type="boolean">true</format>
           <loop_fs config:type="boolean">false</loop_fs>
           <mount>/var/run</mount>
@@ -705,7 +710,6 @@
           <resize config:type="boolean">false</resize>
         </partition>
       </partitions>
-      <pesize></pesize>
       <type config:type="symbol">CT_DISK</type>
       <use>all</use>
     </drive>
@@ -961,10 +965,7 @@ DefaultPolicy default
   <runlevel>
     <default>5</default>
   </runlevel>
-  <security/>
   <software>
-    <image/>
-    <instsource></instsource>
     <packages config:type="list">
       <package>ConsoleKit-32bit</package>
       <package>DirectFB-Mesa</package>
@@ -1101,6 +1102,7 @@ DefaultPolicy default
       <package>yast2-trans-en_US</package>
       <package>yast2-x11</package>
       <package>zypper-aptitude</package>
+      <package>autoyast2-installation</package>
     </packages>
     <patterns config:type="list">
       <pattern>base</pattern>
@@ -1413,7 +1415,6 @@ DefaultPolicy default
     <timezone>America/Sao_Paulo</timezone>
   </timezone>
   <user_defaults>
-    <expire></expire>
     <group>100</group>
     <groups>video</groups>
     <home>/home</home>
@@ -1422,5 +1423,9 @@ DefaultPolicy default
     <skel>/etc/skel</skel>
     <umask>022</umask>
   </user_defaults>
-  <users config:type="list"/>
+  <users config:type="list">
+    <user>
+      <username>albert</username>
+    </user>
+  </users>
 </profile>
